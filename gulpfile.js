@@ -11,4 +11,4 @@ gulp.task("clean", async () => {
 gulp.task(
   "build",
   gulp.series("cleanr", shell.task("parcel build index.html "))
-)
+);

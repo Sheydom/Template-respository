@@ -3,26 +3,22 @@ import globals from "globals";
 import js from "@eslint/js";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"] },
   {
     files: ["**/*.{js,mjs,cjs}"],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: {
+        ...globals.browser, // Include browser globals
+        ...globals.mocha, // Include Mocha globals
+      },
+    },
     rules: {
-      "no-var": "error",
-      "no-unused-vars": "error",
-      semi: ["error", "always"],
-      "no-console": "error",
-      cy: "off",
+      "no-var": "error", // Disallow the use of `var`
+      "no-unused-vars": "error", // Disallow unused variables
+      semi: ["error", "always"], // Enforce semicolons
+      "no-console": "error", // Disallow `console` statements
+      cy: "off", // Turn off Cypress-specific rules
     },
-    env: {
-      mocha: true,
-    },
-  },
-  {
-    files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
-    extends: ["js/recommended"],
+    extends: ["js/recommended"], // Use recommended JavaScript rules
   },
 ]);
-
-var cat = 1
